@@ -3,11 +3,11 @@ import React from "react";
 import './form-input.styles.scss';
 
 const FormInput = ({handleChange, label, ...otherProps}) => (
-    <div className="group">
+    <div className="group" key={otherProps.key}>
         <input  
             className='form-input'
-            name="email"
-            type="email"
+            name={otherProps.name}
+            type={otherProps.type}
             onChange={handleChange} 
             value={otherProps.value} 
             required />
