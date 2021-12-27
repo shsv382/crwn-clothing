@@ -17,7 +17,6 @@ class ShopPage extends React.Component {
         loading: true
     }
     
-
     unsubscribeFromSnapshot = null;
 
     componentDidMount() {
