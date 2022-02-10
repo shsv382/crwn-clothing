@@ -5,13 +5,18 @@ import axios from 'axios';
 const StripeCheckoutButton = ({ price }) => {
     const priceForStripe = price * 100;
     const publishableKey = 'pk_test_51K95YRHeje1UZIIVXzHBjDyOTur4i33UTYhfHFaG7yukJIJ9O7ZKvSu19g5h4KL7BWxSNw4q21xnNLBuuO0rXd6K0055Lskx0S';
+    let url = 'https://crwn-clothing-api-1991.herokuapp.com/';
+
+    if(process.env.NODE_ENV === 'development') {
+        url = 'https://localhost:5000/payment';
+    }
 
     const onToken = token => {
         // console.log(token);
         // alert('Payment Successful!')
 
         axios({
-            url: 'https://localhost:5000/payment',
+            url,
             method: 'post',
             data: {
                 amount: priceForStripe,
