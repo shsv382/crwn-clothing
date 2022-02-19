@@ -15,22 +15,22 @@ const StripeCheckoutButton = ({ price }) => {
 //  -----------------------------------------
 
     const onToken = token => {
-        console.log(token);
-        alert('Payment Successful!')
+        // console.log(token);
+        // alert('Payment Successful!')
 
-        // axios({
-        //     url,
-        //     method: 'post',
-        //     data: {
-        //         amount: priceForStripe,
-        //         token
-        //     }
-        // }).then(response => {
-        //     alert('Payment successfull!')
-        // }).catch(error => {
-        //     console.error('Payment error ', JSON.parse(error));
-        //     alert('Payment error! Please check your credit card!')
-        // })
+        axios({
+            url,
+            method: 'post',
+            data: {
+                amount: priceForStripe,
+                token
+            }
+        }).then(response => {
+            alert('Payment successfull!')
+        }).catch(error => {
+            console.error('Payment error ', JSON.parse(error));
+            alert('Payment error! Please check your credit card!')
+        })
     }
 
     return (
