@@ -9,6 +9,7 @@ import Header from './components/header/header.component';
 // import CheckoutPage from './pages/checkout/checkout.component';
 // import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 
+import ErrorBoundary from './components/error-boundary/error-boundary.component';
 import Spinner from './components/spinner/spinner.component';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -32,14 +33,16 @@ const App = () => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <Suspense fallback={<Spinner />}>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path='/checkout' component={CheckoutPage} />
-          <Route exact path="/signin" render={() => {
-            return currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
-          }} /> 
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/shop" component={ShopPage} />
+            <Route exact path='/checkout' component={CheckoutPage} />
+            <Route exact path="/signin" render={() => {
+              return currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
+            }} /> 
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
     </div>
   );
